@@ -1,0 +1,593 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap');
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: #faf8f5;
+    color: #333;
+    line-height: 1.7;
+    /* ===== FOOTER SELALU DI BAWAH (ADMIN & PENGGUNA) =====
+       body dijadikan flex-column setinggi minimal 1 layar penuh,
+       lalu footer diberi margin-top:auto (lihat bagian FOOTER di bawah)
+       sehingga footer otomatis terdorong ke bawah bila konten
+       halaman pendek, dan tetap normal mengikuti scroll bila
+       konten panjang. Berlaku untuk semua halaman admin & pengguna
+       karena semua memakai includes/header.php & includes/footer.php. */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== HEADER ===== */
+header {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2010 100%);
+    color: #d4af37;
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 3px solid #d4af37;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
+    flex-shrink: 0; /* header tidak ikut mengecil saat footer didorong ke bawah */
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+    color: #d4af37;
+}
+
+nav { display: flex; gap: 6px; flex-wrap: wrap; }
+
+nav a {
+    color: #f5f5dc;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+nav a:hover {
+    color: #d4af37;
+    border-color: #d4af37;
+    background: rgba(212, 175, 55, 0.1);
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: #1a1a1a;
+    text-align: center;
+    padding: 28px 20px;
+    border-top: 3px solid #d4af37;
+    color: #ccc;
+    font-size: 0.85rem;
+    /* margin-top:auto = kunci "footer selalu di bawah".
+       Karena body adalah flex-column, margin ini memakan sisa
+       ruang kosong di layar sehingga footer nempel ke bawah. */
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+footer p { margin: 6px 0; }
+
+.social-links { margin: 12px 0; }
+
+.social-links a {
+    color: #d4af37;
+    text-decoration: none;
+    margin: 0 8px;
+    font-size: 0.8rem;
+    transition: color 0.3s;
+}
+
+.social-links a:hover { color: #fff; }
+
+/* ===== CONTAINER ===== */
+.container {
+    padding: 40px 24px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3 {
+    font-family: 'Cinzel', serif;
+    color: #b8962e;
+}
+
+h2 {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #d4af37;
+}
+
+/* ===== BUTTON ===== */
+.btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #d4af37, #c9a227);
+    color: #fff;
+    padding: 12px 28px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+}
+
+.btn:hover {
+    background: linear-gradient(180deg, #d1d100 0%, #e68a00 100%);
+    box-shadow: #b8962e;
+    transform: translateY(-2px);
+}
+
+/* ===== TABLE ===== */
+.table-wrapper {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    border: 1px solid #e5dcc8;
+}
+
+th {
+    background: linear-gradient(135deg, #d4af37, #c9a227);
+    color: #fff;
+    padding: 14px 16px;
+    text-align: left;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #f0e8d8;
+    font-size: 0.88rem;
+    color: #444;
+}
+
+tr:last-child td { border-bottom: none; }
+
+tr:hover td { background: #fffcf5; }
+
+.badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    background: #d4af37;
+    color: #fff;
+}
+
+.badge-stock {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.badge-stock.high { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+.badge-stock.medium { background: #fff8e1; color: #f9a825; border: 1px solid #ffe082; }
+.badge-stock.low { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+
+/* ===== STATUS KONFIRMASI PENYEWAAN =====
+   Dipakai di admin/data_sewa.php dan riwayat_sewa.php (pengguna)
+   supaya kedua sisi memakai "bahasa visual" status yang sama. */
+.status-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.status-badge.menunggu { background: #fff8e1; color: #f9a825; border: 1px solid #ffe082; }
+.status-badge.diterima { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+.status-badge.ditolak  { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+
+.price { color: #b8962e; font-weight: 600; }
+
+.action-link {
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border: 2px solid #d4af37;
+    border-radius: 4px;
+    transition: all 0.3s;
+    white-space: nowrap;
+    background: transparent;
+}
+
+.action-link:hover {
+    background: #d4af37;
+    color: #fff;
+}
+
+/* ===== FORM CARD ===== */
+.form-card {
+    background: #fff;
+    padding: 32px;
+    border: 2px solid #d4af37;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1);
+}
+
+label {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #b8962e;
+    margin-bottom: 6px;
+    margin-top: 18px;
+    font-weight: 600;
+}
+
+label:first-child { margin-top: 0; }
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px 14px;
+    background: #fffcf5;
+    border: 1px solid #dcd0b8;
+    border-radius: 5px;
+    color: #333;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.88rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #f6d100;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+    background: #fff;
+}
+
+input::placeholder, textarea::placeholder { color: #a99b80; }
+
+select { cursor: pointer; }
+select option { background: #fff; color: #333; }
+
+/* ===== LOGIN PAGE ===== */
+.login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+    background: linear-gradient(180deg, #f5f5dc 0%, #faf8f5 50%, #fff 100%);
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+}
+
+.login-logo-img {
+    width: 100px;
+    height:100px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+.login-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #d4af37;
+    letter-spacing: 4px;
+    margin-bottom: 6px;
+}
+
+.login-subtitle {
+    color: #999;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+}
+
+.login-footer-text {
+    font-size: 0.82rem;
+    margin-top: 20px;
+    color: #888;
+}
+
+.login-footer-text a { color: #d4af37; text-decoration: none; font-weight: 600; }
+.login-footer-text a:hover { text-decoration: underline; }
+
+/* ===== HERO (Landing) ===== */
+.hero {
+    text-align: center;
+    padding: 50px 24px 30px;
+    background: linear-gradient(180deg, #f5f5dc 0%, #faf8f5 100%);
+}
+
+.hero-tagline {
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: #d4af37;
+    letter-spacing: 5px;
+    margin-bottom: 14px;
+}
+
+.hero-desc {
+    font-size: 0.95rem;
+    color: #666;
+    max-width: 640px;
+    margin: 0 auto 30px;
+    line-height: 1.8;
+}
+
+.hero-banner {
+    width: 100%;
+    max-width: 880px;
+    border: 3px solid #d4af37;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.15);
+}
+
+/* ===== KOSTUM CARDS ===== */
+.kostum-grid {
+    display: flex;
+    flex-wrap: nowrap;          /* paksa 1 baris, tidak turun ke bawah */
+    gap: 24px;
+    margin-top: 30px;
+    padding-bottom: 12px;       /* jarak untuk scrollbar */
+}
+
+.kostum-card {
+    background: #fff;
+    border: 2px solid #e5dcc8;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    flex: 0 0 240px;            /* lebar tetap tiap kartu, tidak menyusut/melebar */
+}
+
+.kostum-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.2);
+    border-color: #d4af37;
+}
+
+.kostum-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 1px solid #e5dcc8;
+    background: #f5f5dc;
+}
+
+.kostum-info { padding: 18px; }
+
+.kostum-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: #b8962e;
+    margin-bottom: 4px;
+}
+
+.kostum-price {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.kostum-price span { color: #d4af37; font-weight: 600; }
+
+/* ===== ADMIN BUTTONS ===== */
+.btn-sm {
+    display: inline-block;
+    padding: 6px 14px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-success { background: #2e7d32; color: #fff; }
+.btn-success:hover { background: #256428; }
+
+.btn-danger { background: #c62828; color: #fff; }
+.btn-danger:hover { background: #a52121; }
+
+.btn-secondary { background: #555; color: #fff; }
+.btn-secondary:hover { background: #333; }
+
+.admin-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.thumb { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; border: 1px solid #e5dcc8; }
+
+/* ===== SEWA FORM + PREVIEW GAMBAR =====
+   Layout dua kolom yang dipakai bersama oleh:
+   - sewa.php (Formulir Sewa Kostum pengguna)
+   - admin/edit_kostum.php (Edit Kostum admin)
+   supaya tampilan keduanya konsisten & sejajar. */
+.sewa-layout {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.sewa-layout .form-card { flex: 1 1 340px; }
+
+.sewa-preview-box {
+    flex: 1 1 260px;
+    max-width: 320px;
+    text-align: center;
+    background: #fff;
+    border: 2px solid #d4af37;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1);
+}
+
+/* Kolom kanan khusus sewa.php: preview gambar + kartu catatan
+   ditumpuk vertikal, lalu kolom ini yang menjadi 1 flex-item
+   sejajar dengan form-card (lihat .sewa-layout di atas). */
+.sewa-side {
+    flex: 1 1 260px;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Saat sewa-preview-box berada di dalam .sewa-side, matikan
+   flex/max-width bawaannya agar mengikuti lebar kolom (100%)
+   dan tidak "berebut" ruang dengan kartu catatan di bawahnya. */
+.sewa-side .sewa-preview-box {
+    flex: none;
+    max-width: none;
+    width: 100%;
+}
+
+/* Kartu catatan/aturan penyewaan, ukurannya menyesuaikan lebar
+   kolom kanan agar rapi & sejajar dengan card formulir. */
+.sewa-note-card {
+    width: 100%;
+    text-align: left;
+    background: #fffcf5;
+    border: 2px solid #d4af37;
+    border-radius: 10px;
+    padding: 20px 22px;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1);
+}
+
+.sewa-note-title {
+    font-family: 'Cinzel', serif;
+    color: #b8962e;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.sewa-note-card ul { padding-left: 18px; }
+
+.sewa-note-card li {
+    font-size: 0.82rem;
+    color: #555;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.sewa-note-card li:last-child { margin-bottom: 0; }
+
+.sewa-preview-box img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 6px;
+    background: #f5f5dc;
+    border: 1px solid #e5dcc8;
+}
+
+.sewa-preview-box p {
+    margin-top: 12px;
+    font-family: 'Cinzel', serif;
+    color: #b8962e;
+    font-size: 0.95rem;
+}
+
+.sewa-preview-box .sewa-preview-harga {
+    font-family: 'Raleway', sans-serif;
+    color: #888;
+    font-size: 0.82rem;
+    margin-top: 4px;
+}
+
+/* ===== SECTION TITLE ===== */
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-title h2 {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+    header { flex-direction: column; gap: 12px; padding: 14px; text-align: center; }
+    .header-brand { justify-content: center; }
+    .header-logo { width: 32px; height: 32px; }
+    header h1 { font-size: 1.1rem; }
+    nav { justify-content: center; }
+    nav a { font-size: 0.72rem; padding: 6px 10px; }
+    .container { padding: 24px 16px; }
+    .form-card { padding: 24px 20px; }
+    .kostum-img { height: 180px; }
+}
