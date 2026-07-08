@@ -1,10 +1,6 @@
 # Talenta Project — Sistem Penyewaan Kostum Sanggar Seni
+Akun default admin: **admin123 / admin123**
 
-## Cara Setup
-1. Copy folder ini ke `htdocs` (XAMPP) atau `www` (Laragon).
-2. Buka `http://localhost/SANGGAR_TALENTA/buat_db.php` di browser — jalankan **satu kali** untuk membuat database & tabel.
-3. Akun default admin: **admin123 / admin123**
-4. Akses website: `http://localhost/SANGGAR_TALENTA/`
 
 ## Struktur Folder
 ```
