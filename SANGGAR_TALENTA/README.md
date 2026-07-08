@@ -47,9 +47,3 @@ SANGGAR_TALENTA/
 │
 ├── buat_db.php             -> Setup database (jalankan sekali)
 └── index.php               -> Redirect ke pengguna/dashboard.php
-
-## Yang Perlu Disesuaikan Sebelum Dipakai Nyata
-- Ganti gambar `gambar/qris/qris_talenta.png` dengan QRIS asli sanggar.
-- Ganti nomor rekening di `pengguna/pembayaran.php`.
-- Konfigurasi SMTP (disarankan PHPMailer) agar notifikasi email benar-benar terkirim.
-- Tambahkan gambar untuk pelatihan/karya/event lewat halaman `admin/kelola_konten.php`.
